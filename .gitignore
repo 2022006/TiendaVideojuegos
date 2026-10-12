@@ -1,0 +1,20 @@
+# Entorno virtual de Python (cada quien crea el suyo con pip install -r requirements.txt)
+venv/
+.venv/
+env/
+
+# Archivos compilados de Python
+__pycache__/
+*.pyc
+
+# Configuración local de Vercel y variables secretas
+.vercel/
+.env
+
+# Archivos del sistema y del editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Nota: tienda_videojuegos.db NO se ignora porque la base SQLite es parte de la entrega.
