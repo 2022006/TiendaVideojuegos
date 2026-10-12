@@ -1,0 +1,65 @@
+digraph ER {
+  graph [rankdir=LR, splines=spline, nodesep=0.5, ranksep=1.1, fontname="Helvetica", bgcolor="white", pad=0.4,
+         label="Cartucho · Diagrama entidad-relación (PK = llave primaria, FK = llave foránea)", labelloc=t, fontsize=18];
+  node  [shape=plaintext, fontname="Helvetica", fontsize=11];
+  edge  [fontname="Helvetica", fontsize=10, color="#1e1b3a", arrowhead=crow, arrowtail=tee, dir=both];
+
+  persona [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>persona</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> cedula</TD></TR><TR><TD ALIGN="LEFT">nombre</TD></TR>
+    <TR><TD ALIGN="LEFT">apellidos</TD></TR><TR><TD ALIGN="LEFT">correo</TD></TR><TR><TD ALIGN="LEFT">telefono</TD></TR></TABLE>>];
+  cliente [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>cliente</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> cedula</TD></TR><TR><TD ALIGN="LEFT">nivel</TD></TR></TABLE>>];
+  empleado [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>empleado</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> cedula</TD></TR><TR><TD ALIGN="LEFT">puesto</TD></TR>
+    <TR><TD ALIGN="LEFT">salario_x_hora</TD></TR></TABLE>>];
+  venta [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#3d3bf3">
+    <TR><TD BGCOLOR="#3d3bf3"><FONT COLOR="white"><B>venta</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> identificador</TD></TR><TR><TD ALIGN="LEFT">fecha</TD></TR>
+    <TR><TD ALIGN="LEFT">metodo_pago</TD></TR><TR><TD ALIGN="LEFT"><B>FK</B> cliente</TD></TR>
+    <TR><TD ALIGN="LEFT"><B>FK</B> atendido_por</TD></TR></TABLE>>];
+  venta_videojuego [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#6b6890">
+    <TR><TD BGCOLOR="#6b6890"><FONT COLOR="white"><B>venta_videojuego</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_venta</TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_videojuego</TD></TR>
+    <TR><TD ALIGN="LEFT">cantidad</TD></TR><TR><TD ALIGN="LEFT">precio_unitario</TD></TR></TABLE>>];
+  videojuego [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#3d3bf3">
+    <TR><TD BGCOLOR="#3d3bf3"><FONT COLOR="white"><B>videojuego</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> identificador</TD></TR><TR><TD ALIGN="LEFT">titulo</TD></TR>
+    <TR><TD ALIGN="LEFT">anno_lanzamiento</TD></TR><TR><TD ALIGN="LEFT">clasificacion</TD></TR>
+    <TR><TD ALIGN="LEFT">precio</TD></TR><TR><TD ALIGN="LEFT">stock</TD></TR>
+    <TR><TD ALIGN="LEFT"><B>FK</B> desarrolladora</TD></TR></TABLE>>];
+  desarrolladora [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>desarrolladora</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> identificador</TD></TR><TR><TD ALIGN="LEFT">nombre</TD></TR>
+    <TR><TD ALIGN="LEFT">pais</TD></TR></TABLE>>];
+  videojuego_genero [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#6b6890">
+    <TR><TD BGCOLOR="#6b6890"><FONT COLOR="white"><B>videojuego_genero</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_videojuego</TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_genero</TD></TR></TABLE>>];
+  videojuego_plataforma [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#6b6890">
+    <TR><TD BGCOLOR="#6b6890"><FONT COLOR="white"><B>videojuego_plataforma</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_videojuego</TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK, FK</B> identificador_plataforma</TD></TR></TABLE>>];
+  genero [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>genero</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> identificador</TD></TR><TR><TD ALIGN="LEFT">nombre (único)</TD></TR></TABLE>>];
+  plataforma [label=<<TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4" COLOR="#1e1b3a">
+    <TR><TD BGCOLOR="#1e1b3a"><FONT COLOR="white"><B>plataforma</B></FONT></TD></TR>
+    <TR><TD ALIGN="LEFT"><B>PK</B> identificador</TD></TR><TR><TD ALIGN="LEFT">nombre</TD></TR>
+    <TR><TD ALIGN="LEFT">fabricante</TD></TR></TABLE>>];
+
+  persona -> cliente  [label=" 1 : 0..1 ", arrowhead=teeodot];
+  persona -> empleado [label=" 1 : 0..1 ", arrowhead=teeodot];
+  cliente -> venta    [label=" 1 : N  compra "];
+  empleado -> venta   [label=" 1 : N  atiende "];
+  venta -> venta_videojuego      [label=" 1 : N "];
+  videojuego -> venta_videojuego [label=" 1 : N "];
+  desarrolladora -> videojuego   [label=" 1 : N  crea "];
+  videojuego -> videojuego_genero     [label=" 1 : N "];
+  genero -> videojuego_genero         [label=" 1 : N "];
+  videojuego -> videojuego_plataforma [label=" 1 : N "];
+  plataforma -> videojuego_plataforma [label=" 1 : N "];
+}
