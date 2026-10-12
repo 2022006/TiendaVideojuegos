@@ -1,0 +1,66 @@
+/* Paleta y fuentes en variables para cambiarlas desde un solo lugar. */
+:root {
+  --fondo: #eceaf6; --tinta: #1e1b3a; --panel: #ffffff; --linea: #d6d3ea;
+  --primario: #3d3bf3; --moneda: #ffc83d; --peligro: #d7263d; --suave: #6b6890;
+  --fuente: "Rubik", system-ui, sans-serif; --pixel: "Silkscreen", "Courier New", monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: var(--fuente); background: var(--fondo); color: var(--tinta); line-height: 1.45; }
+
+/* Encabezado: el nombre en letra pixelada es el único elemento "llamativo". */
+header { background: var(--tinta); color: #fff; padding: 2rem max(1rem, calc((100% - 1100px) / 2)); }
+header h1 { margin: 0; font-family: var(--pixel); font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 400; color: var(--moneda); }
+header p { margin: .3rem 0 0; color: #c9c6ee; }
+
+main { max-width: 1100px; margin: 1.5rem auto 3rem; padding: 0 1rem; }
+h2 { font-size: 1.5rem; margin: 0 0 1rem; }
+
+/* Navegación agrupada: Tienda, Personas, Juegos, Ventas. */
+nav { display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; margin-bottom: 1.75rem; }
+.grupo { display: flex; flex-direction: column; gap: .35rem; }
+.grupo > span { font-size: .8rem; color: var(--suave); }
+.grupo > div { display: flex; flex-wrap: wrap; gap: .35rem; }
+
+button { font: inherit; cursor: pointer; border: 0; border-radius: .4rem; padding: .5rem .8rem; background: #dcdaf3; color: var(--tinta); font-weight: 500; }
+button:hover { background: #cfccef; }
+button.active, button.primary { background: var(--primario); color: #fff; }
+button.danger { background: #fbe0e3; color: #9b1426; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid var(--moneda); outline-offset: 2px; }
+
+/* Filtros del catálogo. */
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.25rem; }
+.chips button { border-radius: 2rem; padding: .35rem .9rem; }
+
+/* Estante de juegos: cada tarjeta parece la caja de un juego con su "lomo" de color según el género. */
+.shelf { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 1rem; }
+.caja { position: relative; background: var(--panel); border-radius: .3rem .6rem .6rem .3rem; padding: 1rem 1rem 1rem 1.6rem; border: 1px solid var(--linea); display: flex; flex-direction: column; gap: .4rem; }
+.caja::before { content: ""; position: absolute; inset: 0 auto 0 0; width: .6rem; border-radius: .3rem 0 0 .3rem; background: var(--lomo, var(--primario)); }
+.caja h3 { margin: 0; font-size: 1.1rem; line-height: 1.2; }
+.caja .meta { margin: 0; color: var(--suave); font-size: .88rem; }
+.caja .tags { display: flex; flex-wrap: wrap; gap: .3rem; }
+.caja .tags span { font-size: .78rem; background: #f0eefb; padding: .15rem .5rem; border-radius: 1rem; }
+.caja .pie { margin-top: auto; display: flex; justify-content: space-between; align-items: baseline; gap: .5rem; padding-top: .5rem; white-space: nowrap; }
+.precio { font-weight: 700; font-size: 1.15rem; }
+.edad { font-size: .78rem; font-weight: 700; border: 2px solid var(--tinta); border-radius: .25rem; padding: 0 .3rem; }
+.agotado { color: var(--peligro); font-size: .85rem; }
+
+/* Formulario y tabla de administración (igual idea que el proyecto del taller). */
+form { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .8rem; padding: 1rem; background: var(--panel); border-radius: .5rem; border: 1px solid var(--linea); align-items: end; }
+label { display: grid; gap: .3rem; font-size: .88rem; min-width: 0; }
+input, select { width: 100%; min-width: 0; font: inherit; padding: .5rem; border: 1px solid #a9a6c9; border-radius: .3rem; background: #fff; }
+input[readonly] { background: #f0eefb; }
+#message { min-height: 1.5rem; margin: .6rem 0; }
+#message.error { color: var(--peligro); }
+#message.ok { color: #1d7a3a; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: var(--panel); }
+th, td { padding: .6rem; text-align: left; border-bottom: 1px solid #e6e4f3; white-space: nowrap; }
+th { font-size: .85rem; color: var(--suave); font-weight: 500; }
+.actions { display: flex; gap: .35rem; }
+
+/* Recibo que aparece al ver el detalle de una venta. */
+.recibo { background: var(--panel); border: 1px dashed var(--suave); border-radius: .5rem; padding: 1rem; margin-bottom: 1rem; max-width: 520px; }
+.recibo h3 { margin: 0 0 .3rem; }
+.recibo .meta { color: var(--suave); margin: 0; }
+.recibo table { margin: .5rem 0; }
+.recibo .total { text-align: right; font-weight: 700; font-size: 1.1rem; }

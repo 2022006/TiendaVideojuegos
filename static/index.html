@@ -1,0 +1,42 @@
+<!doctype html>
+<!-- Documento HTML5 de la tienda de videojuegos. -->
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Cartucho · Tienda de videojuegos</title>
+    <!-- Fuentes de Google (si no hay internet se usan las de respaldo del CSS). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header>
+      <h1>Cartucho</h1>
+      <p>Tienda de videojuegos: shooters, indies, historia y más.</p>
+    </header>
+    <main>
+      <!-- JavaScript dibuja aquí los botones de navegación. -->
+      <nav id="tabs" aria-label="Secciones"></nav>
+
+      <!-- Vista del catálogo: tarjetas de juegos con filtro por género. -->
+      <section id="catalogo-view">
+        <h2>Catálogo</h2>
+        <div id="filtros" class="chips" aria-label="Filtrar por género"></div>
+        <div id="juegos" class="shelf"></div>
+      </section>
+
+      <!-- Vista de administración: formulario + tabla de la entidad elegida. -->
+      <section id="crud-view" hidden>
+        <h2 id="title"></h2>
+        <form id="form"></form>
+        <p id="message" role="status"></p>
+        <div id="detalle"></div>
+        <div class="table-wrap">
+          <table><thead id="head"></thead><tbody id="body"></tbody></table>
+        </div>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
